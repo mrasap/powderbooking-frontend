@@ -1,0 +1,8 @@
+.navbar {
+    background-color: #1e1e1e;
+}
+
+#header {
+    min-height: 70px;
+    height: 5vh;
+}
