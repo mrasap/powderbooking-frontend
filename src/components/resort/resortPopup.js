@@ -32,20 +32,55 @@ export default class ResortPopup extends React.Component {
         // set initial state
         this.state = {
             // resort_id: props.resort_id
-            resort_id: 1005
+            resort_id: 1005,
+            error: null,
+            isLoaded: false,
+            payload: {}
         };
     }
 
+    componentDidMount() {
+        fetch("http://127.0.0.1:5000/resort/" + this.state.resort_id)
+            .then(res => res.json())
+            .then(result => {
+                    this.setState({
+                        isLoaded: true,
+                        payload: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        payload: error
+                    });
+                }
+            )
+    }
+
     render() {
-        return (
-            <div>
-                <div className="row">
-                    <ResortDetails resort_id={this.state.resort_id}/>
-                    <ForecastDetails resort_id={this.state.resort_id}/>
+        const {error, isLoaded, payload} = this.state,
+            resort = payload;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return (
+                <div className="container-fluid">
+                    <div className="row flex-column">
+                        <h3> {resort.village} </h3>
+                        <h5> {resort.continent} / {resort.country} </h5>
+                    </div>
+                    <div className="row">
+                        <ResortDetails resort={resort}/>
+                        <ForecastDetails resort_id={this.state.resort_id}/>
+                    </div>
+                    <div className="row">
+                        <ResortPopupButtons resort_id={this.state.resort_id}/>
+                    </div>
                 </div>
-                <ResortPopupButtons resort_id={this.state.resort_id}/>
-            </div>
-        );
+            );
+        }
     }
 }
 
