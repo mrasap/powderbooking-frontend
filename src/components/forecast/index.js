@@ -1,6 +1,7 @@
 import React from "react";
 import './style.css';
 import ChartTemp from './ChartTemp';
+import ChartSnow from "./ChartSnow";
 
 export default class extends React.Component {
     constructor(props) {
@@ -16,6 +17,8 @@ export default class extends React.Component {
             tempMin: [],
             tempMax: [],
             dates: [],
+            snow: [],
+            rain: [],
         };
     }
 
@@ -28,6 +31,8 @@ export default class extends React.Component {
                         payload: result,
                         tempMin: result.map(row => parseFloat(row.temperature_min_c)),
                         tempMax: result.map(row => parseFloat(row.temperature_max_c)),
+                        snow: result.map(row => parseFloat(row.snow_week_mm)),
+                        rain: result.map(row => parseFloat(row.rain_week_mm)),
                         dates: result.map(row => row.date)
                     });
                 },
@@ -41,7 +46,7 @@ export default class extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, dates, tempMin, tempMax} = this.state;
+        const {error, isLoaded, dates, tempMin, tempMax, snow, rain} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -55,6 +60,7 @@ export default class extends React.Component {
                     <ChartTemp labels={dates} tempMin={tempMin} tempMax={tempMax}/>
 
                     <h4>Snow and rain fall (in mm)</h4>
+                    <ChartSnow labels={dates} snow={snow} rain={rain}/>
                 </div>
             );
         }
