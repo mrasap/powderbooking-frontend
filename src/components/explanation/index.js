@@ -4,7 +4,7 @@ import ski1 from '../../assets/images/ski1.jpg';
 import lodge1 from '../../assets/images/lodge1.jpg';
 import mountain2 from '../../assets/images/mountain2.jpg';
 
-export default class Explanation extends React.Component {
+export default class extends React.Component {
     constructor(props) {
         super(props);
 

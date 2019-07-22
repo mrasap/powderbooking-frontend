@@ -25,7 +25,7 @@ function ResortPopupButtons({resort_id}) {
     );
 }
 
-export default class ResortPopup extends React.Component {
+export default class extends React.Component {
     constructor(props) {
         super(props);
 

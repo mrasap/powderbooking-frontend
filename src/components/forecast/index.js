@@ -1,7 +1,7 @@
 import React from "react";
 import './style.css';
 
-export default class Forecast extends React.Component {
+export default class extends React.Component {
     constructor(props) {
         super(props);
 

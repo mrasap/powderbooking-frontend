@@ -2,7 +2,7 @@ import React from "react";
 import track from '../../assets/images/track.jpg';
 import track_me from '../../assets/images/track_me.jpg';
 
-export default class About extends React.Component {
+export default class extends React.Component {
     constructor(props) {
         super(props);
 
