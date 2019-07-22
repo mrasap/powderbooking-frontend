@@ -1,5 +1,6 @@
 import React from "react";
 import './style.css';
+import _ from 'lodash';
 
 export default class extends React.Component {
     constructor(props) {
@@ -45,10 +46,10 @@ export default class extends React.Component {
                 <div className="col-md-6">
                     <div className="row flex-column">
                         <h6><b>Weather forecast summary</b></h6>
-                        <p><b>Snow:</b> {forecast.snow_total_mm} mm</p>
-                        <p><b>Rain:</b> {forecast.rain_total_mm} mm</p>
-                        <p><b>Temperature:</b> {forecast.temperature_min_c} - {forecast.temperature_max_c} &deg;C</p>
-                        <p><b>wind (max):</b> {forecast.wind_speed_max_kmh} km/h</p>
+                        <p><b>Snow:</b> {_.get(forecast, 'snow_total_mm')} mm</p>
+                        <p><b>Rain:</b> {_.get(forecast, 'rain_total_mm')} mm</p>
+                        <p><b>Temperature:</b> {_.get(forecast, 'temperature_min_c')} - {_.get(forecast, 'temperature_max_c')} &deg;C</p>
+                        <p><b>wind (max):</b> {_.get(forecast, 'wind_speed_max_kmh')} km/h</p>
                     </div>
                 </div>
             )
