@@ -2,6 +2,7 @@ import React from "react";
 import './style.css';
 import ChartTemp from './ChartTemp';
 import ChartSnow from "./ChartSnow";
+import _ from "lodash";
 
 export default class extends React.Component {
     constructor(props) {
@@ -10,7 +11,6 @@ export default class extends React.Component {
         // set initial state
         this.state = {
             resort_id: props.resort_id,
-            // resort_id: 1005,
             error: null,
             isLoaded: false,
             payload: {},
@@ -29,11 +29,11 @@ export default class extends React.Component {
                     this.setState({
                         isLoaded: true,
                         payload: result,
-                        tempMin: result.map(row => parseFloat(row.temperature_min_c)),
-                        tempMax: result.map(row => parseFloat(row.temperature_max_c)),
-                        snow: result.map(row => parseFloat(row.snow_week_mm)),
-                        rain: result.map(row => parseFloat(row.rain_week_mm)),
-                        dates: result.map(row => row.date)
+                        tempMin: result.map(row => parseFloat(_.get(row, 'temperature_min_c'))),
+                        tempMax: result.map(row => parseFloat(_.get(row, 'temperature_max_c'))),
+                        snow: result.map(row => parseFloat(_.get(row, 'snow_week_mm'))),
+                        rain: result.map(row => parseFloat(_.get(row, 'rain_week_mm'))),
+                        dates: result.map(row => _.get(row, 'date'))
                     });
                 },
                 (error) => {
@@ -55,6 +55,7 @@ export default class extends React.Component {
             return (
                 <div id="forecast" className="row flex-column">
                     <h1>Weather forecast </h1>
+                    <p><i>Last updated on {_.get(dates, '[0]') }</i></p>
 
                     <h4>Temperature (&deg;C)</h4>
                     <ChartTemp labels={dates} tempMin={tempMin} tempMax={tempMax}/>

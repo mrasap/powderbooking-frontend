@@ -1,5 +1,6 @@
 import React from "react";
 import './style.css';
+import _ from "lodash";
 import TableBody from "./TableBody";
 
 export default class extends React.Component {
@@ -9,7 +10,6 @@ export default class extends React.Component {
         // set initial state
         this.state = {
             resort_id: props.resort_id,
-            // resort_id: 1005,
             error: null,
             weatherIsLoaded: false,
             weather: {},
@@ -62,7 +62,7 @@ export default class extends React.Component {
             return (
                 <div id="current_temp" className="row flex-column">
                     <h1>Current weather report</h1>
-                    <p><i>Last updated on { weather.date_request }</i></p>
+                    <p><i>Last updated on {_.get(weather, 'date_request') }</i></p>
                     <table className="table table-borderless">
                         <thead>
                         <tr>
