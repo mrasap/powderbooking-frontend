@@ -4,7 +4,7 @@ import './style.css';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
+
         // set initial state
         this.state = {
             // id: props.match.params.id,

@@ -1,6 +1,5 @@
 import Resort from './components/resort'
 import ResortPopup from './components/resort/resortPopup'
-import Forecast from './components/forecast'
 
 import Map from './components/map'
 
@@ -10,7 +9,7 @@ export default [
         title: "map view",
         url: "/map",
         isRoute: true,
-        component: Forecast
+        component: Resort
     },
     {
         id: 2,

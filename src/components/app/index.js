@@ -17,13 +17,12 @@ export default class extends React.Component {
         return (
             <div>
                 <Router>
-                    <div id="content" className="container-fluid">
-                        <h3>content</h3>
-                    </div>
                     <Navbar links={routes}/>
-                    {routes.filter(route => route.isRoute).map(route => {
-                        return <Route key={route.id.toString()} path={route.url} component={route.component} />
-                    })}
+                    <div id="content" className="container-fluid">
+                        {routes.filter(route => route.isRoute).map(route => {
+                            return <Route key={route.id.toString()} path={route.url} component={route.component} />
+                        })}
+                    </div>
                 </Router>
                 <Explanation/>
                 <About/>

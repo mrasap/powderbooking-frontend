@@ -9,8 +9,8 @@ export default class extends React.Component {
 
         // set initial state
         this.state = {
-            // resort_id: props.resort_id
-            resort_id: 1005,
+            resort_id: props.resort_id,
+            // resort_id: 1005,
             error: null,
             isLoaded: false,
             payload: {},
@@ -39,7 +39,7 @@ export default class extends React.Component {
                 (error) => {
                     this.setState({
                         isLoaded: true,
-                        payload: error
+                        error: error
                     });
                 }
             )
