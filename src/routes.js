@@ -1,4 +1,6 @@
 import Resort from './components/resort'
+import ResortPopup from './components/resort/resortPopup'
+
 import Map from './components/map'
 
 export default [
@@ -14,7 +16,7 @@ export default [
         title: "resort information",
         url: "/resort/:id",
         isRoute: true,
-        component: Resort
+        component: ResortPopup
     },
     {
         id: 3,
