@@ -1,6 +1,6 @@
 import Resort from './components/resort'
 import ResortPopup from './components/resort/resortPopup'
-import ForecastChartTemperature from './components/forecast/forecastChartTemperature'
+import Forecast from './components/forecast'
 
 import Map from './components/map'
 
@@ -10,7 +10,7 @@ export default [
         title: "map view",
         url: "/map",
         isRoute: true,
-        component: ForecastChartTemperature
+        component: Forecast
     },
     {
         id: 2,
