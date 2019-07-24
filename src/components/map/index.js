@@ -1,6 +1,8 @@
 import React from "react";
 import './style.css';
-import {Map as LeafletMap, Marker, Popup, TileLayer} from 'react-leaflet'
+import {Map as LeafletMap, Marker, Popup, TileLayer} from 'react-leaflet';
+import _ from "lodash";
+import {HeatmapLayer} from "./HeatmapLayer";
 
 export default class extends React.Component {
     constructor(props) {
@@ -9,8 +11,10 @@ export default class extends React.Component {
         // set initial state
         this.state = {
             mapConfig: {
-                center: [31.00, 8.00],
-                zoom: 3,
+                viewport: {
+                    center: [31.00, 8.00],
+                    zoom: 3
+                },
                 minZoom: 2,
                 maxZoom: 12,
                 maxBounds: [
@@ -25,13 +29,45 @@ export default class extends React.Component {
                 attribution: 'Map &copy; <a href="https://www.mapbox.com/">Mapbox</a> | ' +
                     'Weather &copy; <a href="http://www.weatherunlocked.com/">Weather Unlocked</a>'
             },
+            heatmapConfig: {
+                "radius": 2,
+                "minOpacity": 0,
+                "maxOpacity": .5,
+                "scaleRadius": true,
+                "useLocalExtrema": false,
+                gradient: {
+                    '.3': 'darkblue',
+                    '.7': 'slateblue',
+                    '.99': 'ivory'
+                },
+                latField: 'lat',
+                lngField: 'lng',
+                valueField: 'rain_total_mm'
+            },
+            payload: {
+                max: 30,
+                data: []
+            }
         };
+    }
+
+    componentDidMount() {
+        fetch("http://127.0.0.1:5000/overview/")
+            .then(res => res.json())
+            .then(result => {
+                    this.setState({payload: {max: 10, data: result}});
+                },
+                (error) => {
+                    console.log('unable to fetch overview data');
+                }
+            )
     }
 
     render() {
         return (
-            <LeafletMap {...this.state.mapConfig}>
+            <LeafletMap {...this.state.mapConfig} onViewportChanged={this.onViewportChanged}>
                 <TileLayer {...this.state.layerConfig}/>
+                <HeatmapLayer cfg={this.state.heatmapConfig} data={this.state.payload}/>
             </LeafletMap>
         );
     }
