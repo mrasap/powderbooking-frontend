@@ -9,14 +9,14 @@ export default [
         title: "map view",
         url: "/map",
         isRoute: true,
-        component: Resort
+        component: Map
     },
     {
         id: 2,
         title: "resort information",
         url: "/resort/:id",
         isRoute: true,
-        component: ResortPopup
+        component: Resort
     },
     {
         id: 3,

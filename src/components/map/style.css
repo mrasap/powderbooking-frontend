@@ -1,0 +1,57 @@
+.leaflet-container {
+    height: 90vh;
+    width: 100%;
+}
+
+#expl-toggle {
+    min-height: 5vh;
+}
+
+#expl-toggle a {
+    color: #f7ffff;
+    text-align: center;
+}
+
+#expl-toggle a:hover {
+    color: #919999;
+    text-decoration: none currentColor;
+}
+
+#div-btn {
+    padding-left: 0px;
+}
+
+#forecast:hover, #booking:hover {
+    color: #f7ffff;
+    text-decoration: none;
+}
+
+.leaflet-popup-tip {
+    background-color: #1e1e1e;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-tooltip {
+    background-color: #1e1e1e;
+    color: #f7ffff;
+}
+
+.leaflet-popup-content-wrapper p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.leaflet-popup-content-wrapper h6 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.leaflet-control-attribution.leaflet-control {
+    background-color: #8f8f8f;
+}
+
+.leaflet-tooltip h6 {
+    text-align: center;
+    margin: 5px;
+}
