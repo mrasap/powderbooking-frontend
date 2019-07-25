@@ -1,8 +1,9 @@
 import React from "react";
 import './style.css';
-import {Map as LeafletMap, Marker, Popup, TileLayer} from 'react-leaflet';
+import {Map as LeafletMap, TileLayer} from 'react-leaflet';
 import _ from "lodash";
 import {HeatmapLayer} from "./HeatmapLayer";
+import Markers from './Markers';
 
 export default class extends React.Component {
     constructor(props) {
@@ -49,6 +50,8 @@ export default class extends React.Component {
                 data: []
             }
         };
+
+        // this.onViewportChanged = this.onViewportChanged.bind(this);
     }
 
     componentDidMount() {
@@ -63,11 +66,20 @@ export default class extends React.Component {
             )
     }
 
+    // onViewportChanged = (viewport) => {
+    //     // This method would be an ideal vantage point if I ever want to cluster resorts to send small bites of data
+    //     // On every viewport change, I would AJAX the resorts that are in sight and update the map.
+    //     this.setState({viewport});
+    // };
+
     render() {
         return (
-            <LeafletMap {...this.state.mapConfig} onViewportChanged={this.onViewportChanged}>
+            <LeafletMap {...this.state.mapConfig}
+                        // onViewportChanged={this.onViewportChanged}
+            >
                 <TileLayer {...this.state.layerConfig}/>
                 <HeatmapLayer cfg={this.state.heatmapConfig} data={this.state.payload}/>
+                <Markers/>
             </LeafletMap>
         );
     }
