@@ -6,12 +6,12 @@ import HeatmapOverlay from "leaflet-heatmap";
 class _HeatmapLayer extends MapLayer {
     createLeafletElement(props) {
         let heatmap = new HeatmapOverlay(props.cfg);
-        heatmap.setData(props.data);
+        heatmap.setData({max: props.max, data: props.data});
         return heatmap;
     }
 
     updateLeafletElement(_fromProps, _toProps) {
-        this.leafletElement.setData(_toProps.data);
+        this.leafletElement.setData({max: _toProps.max, data: _toProps.data});
     }
 }
 

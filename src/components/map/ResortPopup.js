@@ -1,8 +1,9 @@
 import React from "react";
-import './style.css';
+import '../resort/style.css';
 import {Link} from "react-router-dom";
 import ForecastDetails from '../forecast/forecastDetails'
-import ResortDetails from './resortDetails'
+import ResortDetails from '../resort/ResortDetails'
+import {Popup} from "react-leaflet";
 
 function ResortPopupButton({url, title}) {
     return (
@@ -37,9 +38,30 @@ export default class extends React.Component {
             isLoaded: false,
             payload: {}
         };
+
+        this.handleOnPopupOpen = this.handleOnPopupOpen.bind(this);
     }
 
-    componentDidMount() {
+    // componentDidMount() {
+    //     fetch("http://127.0.0.1:5000/resort/" + this.state.resort_id)
+    //         .then(res => res.json())
+    //         .then(result => {
+    //                 this.setState({
+    //                     isLoaded: true,
+    //                     payload: result
+    //                 });
+    //             },
+    //             (error) => {
+    //                 this.setState({
+    //                     isLoaded: true,
+    //                     payload: error
+    //                 });
+    //             }
+    //         )
+    // }
+
+    handleOnPopupOpen() {
+        console.log('popup opened for id ' + this.state.resort_id);
         fetch("http://127.0.0.1:5000/resort/" + this.state.resort_id)
             .then(res => res.json())
             .then(result => {
@@ -63,10 +85,14 @@ export default class extends React.Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return (
+                <Popup minWidth={800} onpopupopen={this.handleOnPopupOpen}>
+                    <div>Loading...</div>
+                </Popup>
+            );
         } else {
             return (
-                <div className="container-fluid">
+                <Popup minWidth={800}>
                     <div className="row flex-column">
                         <h3> {resort.village} </h3>
                         <h5> {resort.continent} / {resort.country} </h5>
@@ -78,7 +104,7 @@ export default class extends React.Component {
                     <div className="row">
                         <ResortPopupButtons resort_id={this.state.resort_id}/>
                     </div>
-                </div>
+                </Popup>
             );
         }
     }

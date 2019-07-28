@@ -1,6 +1,6 @@
 import React from "react";
 import './style.css';
-import ResortDetails from "./resortDetails";
+import ResortDetails from "./ResortDetails";
 import Forecast from "../forecast";
 import Weather from "../weather";
 

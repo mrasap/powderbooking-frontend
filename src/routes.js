@@ -1,5 +1,5 @@
 import Resort from './components/resort'
-import ResortPopup from './components/resort/resortPopup'
+import ResortPopup from './components/map/ResortPopup'
 
 import Map from './components/map'
 
