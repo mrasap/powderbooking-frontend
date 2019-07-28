@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import '../resort/style.css';
 import {Link} from "react-router-dom";
 import ForecastDetails from '../forecast/forecastDetails'
@@ -42,24 +42,6 @@ export default class extends React.Component {
         this.handleOnPopupOpen = this.handleOnPopupOpen.bind(this);
     }
 
-    // componentDidMount() {
-    //     fetch("http://127.0.0.1:5000/resort/" + this.state.resort_id)
-    //         .then(res => res.json())
-    //         .then(result => {
-    //                 this.setState({
-    //                     isLoaded: true,
-    //                     payload: result
-    //                 });
-    //             },
-    //             (error) => {
-    //                 this.setState({
-    //                     isLoaded: true,
-    //                     payload: error
-    //                 });
-    //             }
-    //         )
-    // }
-
     handleOnPopupOpen() {
         console.log('popup opened for id ' + this.state.resort_id);
         fetch("http://127.0.0.1:5000/resort/" + this.state.resort_id)
@@ -73,7 +55,7 @@ export default class extends React.Component {
                 (error) => {
                     this.setState({
                         isLoaded: true,
-                        payload: error
+                        error: error
                     });
                 }
             )
@@ -82,17 +64,10 @@ export default class extends React.Component {
     render() {
         const {error, isLoaded, payload} = this.state,
             resort = payload;
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
-            return (
-                <Popup minWidth={800} onpopupopen={this.handleOnPopupOpen}>
-                    <div>Loading...</div>
-                </Popup>
-            );
-        } else {
-            return (
-                <Popup minWidth={800}>
+        return (
+            <Popup minWidth={800} onOpen={this.handleOnPopupOpen}>
+                {isLoaded && !error &&
+                    <Fragment>
                     <div className="row flex-column">
                         <h3> {resort.village} </h3>
                         <h5> {resort.continent} / {resort.country} </h5>
@@ -104,9 +79,16 @@ export default class extends React.Component {
                     <div className="row">
                         <ResortPopupButtons resort_id={this.state.resort_id}/>
                     </div>
-                </Popup>
-            );
-        }
+                    </Fragment>
+                }
+                {isLoaded && error &&
+                    <div>Error: {error.message}</div>
+                }
+                {!isLoaded &&
+                    <div>Loading...</div>
+                }
+            </Popup>
+        );
     }
 }
 
