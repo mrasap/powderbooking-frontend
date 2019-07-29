@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import './style.css';
 import ResortDetails from "./ResortDetails";
 import Forecast from "../forecast";
@@ -46,16 +46,16 @@ export default class extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <div>
+                <Fragment>
                     <div id="current_resort" className="row flex-column">
                         <h1>{resort.village}</h1>
                         <h5>{resort.continent} / {resort.country}</h5>
-
+                        &nbsp;
                         <ResortDetails resort={resort}/>
                     </div>
                     <Weather resort_id={resort_id}/>
                     <Forecast resort_id={resort_id} />
-                </div>
+                </Fragment>
             );
         }
     }

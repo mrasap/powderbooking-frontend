@@ -67,25 +67,25 @@ export default class extends React.Component {
         return (
             <Popup minWidth={800} onOpen={this.handleOnPopupOpen}>
                 {isLoaded && !error &&
-                    <Fragment>
+                <Fragment>
                     <div className="row flex-column">
                         <h3> {resort.village} </h3>
                         <h5> {resort.continent} / {resort.country} </h5>
                     </div>
                     <div className="row">
-                        <ResortDetails resort={resort}/>
+                        <div className="col-md-6">
+                            <ResortDetails resort={resort}/>
+                        </div>
                         <ForecastDetails resort_id={this.state.resort_id}/>
                     </div>
-                    <div className="row">
-                        <ResortPopupButtons resort_id={this.state.resort_id}/>
-                    </div>
-                    </Fragment>
+                    <ResortPopupButtons resort_id={this.state.resort_id}/>
+                </Fragment>
                 }
                 {isLoaded && error &&
-                    <div>Error: {error.message}</div>
+                <div>Error: {error.message}</div>
                 }
                 {!isLoaded &&
-                    <div>Loading...</div>
+                <div>Loading...</div>
                 }
             </Popup>
         );
