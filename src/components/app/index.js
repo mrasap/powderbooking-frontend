@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import Navbar from "../navbar";
 import Explanation from "../explanation";
@@ -15,7 +15,7 @@ export default class extends React.Component {
 
     render() {
         return (
-            <div>
+            <Fragment>
                 <Router>
                     <Navbar links={routes}/>
                     <div id="content" className="container-fluid">
@@ -29,7 +29,7 @@ export default class extends React.Component {
                 </Router>
                 <Explanation/>
                 <About/>
-            </div>
+            </Fragment>
         );
     }
 }

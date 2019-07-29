@@ -109,7 +109,9 @@ export default class extends React.Component {
                 (error) => {
                     console.log('unable to fetch max_overview data');
                 }
-            )
+            );
+
+        window.scrollTo(0, 0);
     }
 
     handleOnViewportChange = (newViewport) => {

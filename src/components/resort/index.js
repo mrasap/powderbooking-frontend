@@ -33,7 +33,9 @@ export default class extends React.Component {
                         error: error
                     });
                 }
-            )
+            );
+
+        window.scrollTo(0, 0);
     }
 
 
@@ -46,7 +48,7 @@ export default class extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <Fragment>
+                <div className="container">
                     <div id="current_resort" className="row flex-column">
                         <h1>{resort.village}</h1>
                         <h5>{resort.continent} / {resort.country}</h5>
@@ -55,7 +57,7 @@ export default class extends React.Component {
                     </div>
                     <Weather resort_id={resort_id}/>
                     <Forecast resort_id={resort_id} />
-                </Fragment>
+                </div>
             );
         }
     }

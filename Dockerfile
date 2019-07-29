@@ -11,6 +11,9 @@ RUN npm install && \
 RUN adduser -D nonrootuser
 USER nonrootuser
 
+# npm run build creates a folder that should probably be sufficient together with serve for deployment
+# TODO: create builder layer and final layer with only the build folder and serve
+
 EXPOSE 5000
 
 CMD ["serve", "-s", "build"]
