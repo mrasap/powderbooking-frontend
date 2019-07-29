@@ -1,23 +1,6 @@
 import React from "react";
 import './style.css';
-import {Link} from "react-router-dom";
-
-
-function NavbarItemRoute(props) {
-    return <Link to={props.url} className="nav-link">{props.title}</Link>;
-}
-
-function NavbarItemRef(props) {
-    return <a href={props.url} className="nav-link">{props.title}</a>;
-}
-
-function NavbarItem(props) {
-    return (
-        <li className="nav-item">
-            {props.isRoute ? <NavbarItemRoute {...props}/> : <NavbarItemRef {...props}/>}
-        </li>
-    );
-}
+import NavbarItem from "./NavbarItem";
 
 export default class extends React.Component {
     constructor(props) {
@@ -30,7 +13,7 @@ export default class extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+            <nav id='header' className="navbar navbar-expand-lg navbar-dark fixed-top">
                 <a className="navbar-brand" href="/">Welcome powder hunter!</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

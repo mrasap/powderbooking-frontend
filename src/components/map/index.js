@@ -1,7 +1,7 @@
 import React from "react";
 import './style.css';
 import {Map as LeafletMap, TileLayer} from 'react-leaflet';
-import {HeatmapLayer} from "./HeatmapLayer";
+import HeatmapLayer from "./HeatmapLayer";
 import Markers from './Markers';
 
 const SNOW_OR_RAIN = 'snow';

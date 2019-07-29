@@ -1,9 +1,7 @@
-import React from "react";
 import {withLeaflet, MapLayer} from "react-leaflet";
-
 import HeatmapOverlay from "leaflet-heatmap";
 
-class _HeatmapLayer extends MapLayer {
+class HeatmapLayer extends MapLayer {
     createLeafletElement(props) {
         let heatmap = new HeatmapOverlay(props.cfg);
         heatmap.setData({max: props.max, data: props.data});
@@ -15,6 +13,4 @@ class _HeatmapLayer extends MapLayer {
     }
 }
 
-export const HeatmapLayer = withLeaflet(props => {
-    return <_HeatmapLayer {...props} />;
-});
+export default withLeaflet(HeatmapLayer);

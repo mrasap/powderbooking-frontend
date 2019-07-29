@@ -60,7 +60,7 @@ export default class extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <div id="current_temp" className="row flex-column">
+                <div id="current" className="row flex-column">
                     <h1>Current weather report</h1>
                     <p><i>Last updated on {_.get(weather, 'date_request') }</i></p>
                     <table className="table table-borderless">

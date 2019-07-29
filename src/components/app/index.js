@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import Navbar from "../navbar";
 import Explanation from "../explanation";
 import About from "../about";
@@ -19,9 +19,12 @@ export default class extends React.Component {
                 <Router>
                     <Navbar links={routes}/>
                     <div id="content" className="container-fluid">
-                        {routes.filter(route => route.isRoute).map(route => {
-                            return <Route key={route.id.toString()} path={route.url} component={route.component} />
-                        })}
+                        <Switch>
+                            {routes.filter(route => route.isRoute).map(route => {
+                                return <Route key={route.id.toString()} path={route.url} component={route.component}/>
+                            })}
+                            <Route key={'default'}><Redirect to={'/map'}/></Route>
+                        </Switch>
                     </div>
                 </Router>
                 <Explanation/>
