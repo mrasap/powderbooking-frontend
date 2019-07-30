@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import './style.css';
 import ResortDetails from "./ResortDetails";
 import Forecast from "../forecast";
