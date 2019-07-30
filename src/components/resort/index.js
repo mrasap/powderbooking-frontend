@@ -10,8 +10,8 @@ export default class extends React.Component {
 
         // set initial state
         this.state = {
-            // resort_id: props.resort_id
-            resort_id: 932,
+            resort_id: props.resort_id,
+            // resort_id: 932,
             error: null,
             isLoaded: false,
             payload: {}
