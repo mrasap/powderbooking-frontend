@@ -19,7 +19,7 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://127.0.0.1:5000/resort/" + this.state.resort_id)
+        fetch(process.env.REACT_APP_BACKEND_API + "/resort/" + this.state.resort_id)
             .then(res => res.json())
             .then(result => {
                     this.setState({

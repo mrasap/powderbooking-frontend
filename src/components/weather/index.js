@@ -19,7 +19,7 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://127.0.0.1:5000/forecast/past/" + this.state.resort_id)
+        fetch(process.env.REACT_APP_BACKEND_API + "/forecast/past/" + this.state.resort_id)
             .then(res => res.json())
             .then(result => {
                     this.setState({
@@ -35,7 +35,7 @@ export default class extends React.Component {
                 }
             )
 
-        fetch("http://127.0.0.1:5000/weather/" + this.state.resort_id)
+        fetch(process.env.REACT_APP_BACKEND_API + "/weather/" + this.state.resort_id)
             .then(res => res.json())
             .then(result => {
                     this.setState({

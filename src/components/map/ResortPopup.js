@@ -44,7 +44,7 @@ export default class extends React.Component {
 
     handleOnPopupOpen() {
         console.log('popup opened for id ' + this.state.resort_id);
-        fetch("http://127.0.0.1:5000/resort/" + this.state.resort_id)
+        fetch(process.env.REACT_APP_BACKEND_API + "/resort/" + this.state.resort_id)
             .then(res => res.json())
             .then(result => {
                     this.setState({

@@ -91,7 +91,7 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://127.0.0.1:5000/overview/")
+        fetch(process.env.REACT_APP_BACKEND_API + "/overview/")
             .then(res => res.json())
             .then(result => {
                     console.log(result);
@@ -101,7 +101,7 @@ export default class extends React.Component {
                     console.log('unable to fetch overview data')
                 }
             );
-        fetch("http://127.0.0.1:5000/overview/max/" + SNOW_OR_RAIN)
+        fetch(process.env.REACT_APP_BACKEND_API + "/overview/max/" + SNOW_OR_RAIN)
             .then(res => res.json())
             .then(result => {
                     this.setState({payload_max: result});
