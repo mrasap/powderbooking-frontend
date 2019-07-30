@@ -93,22 +93,13 @@ export default class extends React.Component {
     componentDidMount() {
         fetch(process.env.REACT_APP_BACKEND_API + "/overview/")
             .then(res => res.json())
-            .then(result => {
-                    console.log(result);
-                    this.setState({payload_data: result})
-                },
-                (error) => {
-                    console.log('unable to fetch overview data')
-                }
+            .then(result => {this.setState({payload_data: result})},
+                (error) => {console.log('unable to fetch overview data')}
             );
         fetch(process.env.REACT_APP_BACKEND_API + "/overview/max/" + SNOW_OR_RAIN)
             .then(res => res.json())
-            .then(result => {
-                    this.setState({payload_max: result});
-                },
-                (error) => {
-                    console.log('unable to fetch max_overview data');
-                }
+            .then(result => {this.setState({payload_max: result})},
+                (error) => {console.log('unable to fetch max_overview data')}
             );
 
         window.scrollTo(0, 0);

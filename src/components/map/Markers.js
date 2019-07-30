@@ -17,9 +17,6 @@ export default class extends React.Component {
     }
 
     render() {
-        // TODO: Docker hub
-        // TODO: Find out how to deploy a react app
-        // TODO: Helm charts
         // TODO: Terraform google
         return (
             <FeatureGroup>
