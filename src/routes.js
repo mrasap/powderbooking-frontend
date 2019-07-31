@@ -12,7 +12,7 @@ export default [
     {
         id: 2,
         title: "resort information",
-        url: "/resort/:id",
+        url: "/resort/:resort_id/",
         isRoute: true,
         component: Resort,
         requiredPath: '/resort'

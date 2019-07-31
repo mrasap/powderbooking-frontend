@@ -10,7 +10,7 @@ export default class extends React.Component {
 
         // set initial state
         this.state = {
-            resort_id: props.resort_id,
+            resort_id: props.match.params.resort_id,
             error: null,
             isLoaded: false,
             payload: {}
