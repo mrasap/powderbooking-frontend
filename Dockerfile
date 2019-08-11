@@ -1,19 +1,14 @@
-FROM node:alpine
+FROM node:alpine as builder
 
 WORKDIR /usr/src/app
 
 COPY . .
 
 RUN npm install && \
-    npm run build && \
-    npm install -g serve
+    npm run build
 
-RUN adduser -D nonrootuser
-USER nonrootuser
+# loosely based on: https://medium.com/@tiangolo/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305
+FROM nginx:alpine
 
-# npm run build creates a folder that should probably be sufficient together with serve for deployment
-# TODO: create builder layer and final layer with only the build folder and serve
-
-EXPOSE 5000
-
-CMD ["serve", "-s", "build"]
+COPY --from=builder /usr/src/app/build/ /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
