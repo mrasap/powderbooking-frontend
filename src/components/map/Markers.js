@@ -26,7 +26,7 @@ export default class extends React.Component {
                                   {...this.props.circleDynamicConfig}
                                   {...this.staticConfig}>
                         <ResortPopup resort_id={point.id}/>
-                        <Tooltip> <h6><b>{point.snow_total_mm} mm</b> snow in {point.village}</h6></Tooltip>
+                        <Tooltip> <h6><b>{point.snow_week_mm} mm</b> snow in {point.village}</h6></Tooltip>
                     </CircleMarker>
                 )}
             </FeatureGroup>

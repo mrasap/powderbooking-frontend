@@ -1,1 +1,2 @@
 export const GET_OVERVIEW = "GET_OVERVIEW";
+export const GET_OVERVIEW_MAX = "GET_OVERVIEW_MAX";

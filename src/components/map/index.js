@@ -1,10 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { Fragment } from "react";
 import "./style.css";
 import { Map as LeafletMap, TileLayer } from "react-leaflet";
 import HeatmapLayer from "./HeatmapLayer";
 import Markers from "./Markers";
-import { getOverview } from "../../actions/overview";
 const SNOW_OR_RAIN = "snow";
 
 function convertZoomToMarkerConfig(zoom) {
@@ -31,7 +29,7 @@ function convertZoomToMarkerConfig(zoom) {
   };
 }
 
-class _map extends React.Component {
+export default class extends React.Component {
   staticConfig = {
     map: {
       viewport: {
@@ -69,10 +67,6 @@ class _map extends React.Component {
       latField: "lat",
       lngField: "lng",
       valueField: SNOW_OR_RAIN + "_total_mm"
-    },
-    payload: {
-      max: 30,
-      data: []
     }
   };
 
@@ -85,9 +79,7 @@ class _map extends React.Component {
         center: [31.0, 8.0],
         zoom: 3
       },
-      markers: convertZoomToMarkerConfig(3),
-      payload_data: [],
-      payload_max: 1
+      markers: convertZoomToMarkerConfig(3)
     };
 
     this.handleZoomChange = this.handleZoomChange.bind(this);
@@ -96,7 +88,7 @@ class _map extends React.Component {
 
   // TODO: switch to componentWillMount?
   componentDidMount() {
-    this.props.fetchOverview();
+    this.props.getOverview();
     window.scrollTo(0, 0);
   }
 
@@ -117,32 +109,28 @@ class _map extends React.Component {
   };
 
   render() {
+    console.log(this.props);
+    const { data, max } = this.props;
     return (
       <LeafletMap
         {...this.staticConfig.map}
         onViewportChanged={this.handleOnViewportChange}
       >
         <TileLayer {...this.staticConfig.tileLayer} />
-        <HeatmapLayer
-          cfg={this.staticConfig.heatMap}
-          max={this.props.overview_max}
-          data={this.props.overview}
-        />
-        <Markers
-          circleDynamicConfig={this.state.markers}
-          data={this.props.overview}
-        />
+        {data && max && (
+          <Fragment>
+            <HeatmapLayer
+              cfg={this.staticConfig.heatMap}
+              max={max}
+              data={data}
+            />
+            <Markers
+              circleDynamicConfig={this.state.markers}
+              data={data}
+            />
+          </Fragment>
+        )}
       </LeafletMap>
     );
   }
 }
-
-const mapStateToProps = state => ({
-    overview: state.overview,
-    overview_max: state.overview_max
-  });
-
-export default connect(
-  mapStateToProps,
-  { getOverview }
-)(_map);

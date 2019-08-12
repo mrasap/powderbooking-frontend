@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import resort from "./resort";
+import overview from "./overview";
 
-export default combineReducers({ resort, });
+export default combineReducers({ overview });
