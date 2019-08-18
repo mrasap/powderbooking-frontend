@@ -1,5 +1,5 @@
 import Resort from './components/resort'
-import Map from './containers/map'
+import Map from './containers/Map'
 
 export default [
     {

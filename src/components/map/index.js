@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import "./style.css";
 import { Map as LeafletMap, TileLayer } from "react-leaflet";
 import HeatmapLayer from "./HeatmapLayer";
-import Markers from "./Markers";
+import Markers from "../../containers/Markers";
 const SNOW_OR_RAIN = "snow";
 
 function convertZoomToMarkerConfig(zoom) {
@@ -73,7 +73,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    // set initial state
+    // TODO: transfer this state to redux
     this.state = {
       currentViewport: {
         center: [31.0, 8.0],
@@ -109,7 +109,6 @@ export default class extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const { data, max } = this.props;
     return (
       <LeafletMap

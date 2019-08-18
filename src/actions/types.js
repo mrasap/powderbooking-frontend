@@ -1,2 +1,4 @@
+export const GET_RESORT = "GET_RESORT";
+export const SELECT_RESORT = "SELECT_RESORT";
 export const GET_OVERVIEW = "GET_OVERVIEW";
 export const GET_OVERVIEW_MAX = "GET_OVERVIEW_MAX";
