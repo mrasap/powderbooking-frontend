@@ -19,7 +19,6 @@ export default (state = initialState, action) => {
         ...result
       };
     case SELECT_RESORT:
-      console.log('select resort was reduced')
       return {
         ...initialState, // reset state because we are looking for a new resort
         resort_id: action.resort_id

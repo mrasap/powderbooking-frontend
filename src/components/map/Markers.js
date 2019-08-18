@@ -8,7 +8,7 @@ const staticConfig = {
   color: "wheat"
 };
 
-export default ({ data, circleDynamicConfig, selectResort, resort_id }) => {
+export default ({ resort_id, data, dynamicConfig, selectResort }) => {
   // The Markers with the tooltip are always rendered
   // The Popup is only shown when one of the markers is clicked
   return (
@@ -18,12 +18,12 @@ export default ({ data, circleDynamicConfig, selectResort, resort_id }) => {
           key={resort.id}
           center={[resort.lat, resort.lng]}
           onclick={() => {selectResort(resort.id)}}
-          {...circleDynamicConfig}
           {...staticConfig}
+          {...dynamicConfig}
         >
           <Tooltip>
             <h6>
-              <b>{resort.snow_week_mm} mm</b> snow in {resort.village} with id {resort.id}
+              <b>{resort.snow_week_mm} mm</b> snow in {resort.village}
             </h6>
           </Tooltip>
         </CircleMarker>

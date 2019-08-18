@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import getOverview from "../actions/getOverview";
+import handleViewportChange from "../actions/handleViewportChange";
 import Component from "../components/map";
 
 const mapStateToProps = state => ({
@@ -8,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getOverview
+  getOverview,
+  handleViewportChange
 };
 
 export default connect(
